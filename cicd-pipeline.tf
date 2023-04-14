@@ -50,7 +50,7 @@ resource "aws_codebuild_project" "tf-apply" {
 
 resource "aws_codepipeline" "cicd_pipeline" {
 
-    name = "tf-cicd"
+    name = "tf-cicd-mlops"
     role_arn = aws_iam_role.tf-codepipeline-role.arn
 
     artifact_store {
@@ -69,7 +69,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
             output_artifacts = ["tf-code"]
             configuration = {
                 FullRepositoryId = "raguram99/aws-cicd-pipeline"
-                BranchName   = "master"
+                BranchName   = "main"
                 ConnectionArn = var.codestar_connector_credentials
                 OutputArtifactFormat = "CODE_ZIP"
             }
